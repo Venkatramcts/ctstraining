@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Paragraph Processor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      margin-bottom: 10px;
+    }
+    button {
+      margin-right: 10px;
+      padding: 10px 20px;
+    }
+    #result {
+      margin-top: 20px;
+      white-space: pre-wrap;
+      background-color: #3bebe5;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Enter a Paragraph</h2>
+  <textarea id="userInput" placeholder="Type or paste your paragraph here..."></textarea><br>
+
+  <button onclick="handleInput()">Input</button>
+  <button onclick="handleOutput()">Output</button>
+
+  <div id="result"></div>
+
+  <script>
+    let paragraph = "";
+
+    function handleInput() {
+      paragraph = document.getElementById("userInput").value;
+      document.getElementById("result").textContent = "Paragraph saved!";
+    }
+
+    function handleOutput() {
+      // Use current textarea value if input button wasn't clicked
+      if (!paragraph) {
+        paragraph = document.getElementById("userInput").value;
+      }
+
+      const output = [];
+      const sentences = paragraph.split('.');
+
+      for (let i = 0; i < sentences.length; i++) {
+        const trimmed = sentences[i].trim();
+        if (trimmed.length > 0) {
+          output.push(`"${trimmed}."`);
+        }
+      }
+
+      document.getElementById("result").textContent = output.join('\n');
+    }
+  </script>
+
+</body>
+</html>
